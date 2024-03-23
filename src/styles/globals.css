@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-slide-active{
+    transform: scale(1.25) !important;
+    transition: transform 0.5s !important;
+}
+
+.swiper-slide-shadow-left {
+  background-image: none !important;
+}
+
+.swiper-slide-shadow-right {
+  background-image: none !important;
+}
