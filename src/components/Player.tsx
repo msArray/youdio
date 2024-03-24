@@ -44,6 +44,11 @@ export class Player extends Component<PlayerProps> {
         });
     }
 
+    componentWillUnmount(): void {
+        this.Audio?.pause();
+        this.Video.current?.pause();
+    }
+
     downloadMusic = () => {
         const a = document.createElement('a');
         a.href = `/api/audio/${this.props.vid}`;

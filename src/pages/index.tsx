@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import { getParam } from "@/utils/getParam";
+import { isYoutubeId } from "@/utils/isYTid";
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,16 +12,18 @@ export default function Home() {
 
   const youdioGo = () => {
     const url = (document.querySelector('input[type="text"]') as HTMLInputElement).value;
-    if (getParam('v', url)) {
+    if (getParam('v', url) && isYoutubeId(getParam('v', url) as string)) {
       router.push({
         pathname: '/app/[v]',
         query: { v: getParam('v', url) },
       })
-    } else {
+    } else if (isYoutubeId(url)) {
       router.push({
         pathname: '/app/[v]',
         query: { v: url },
       })
+    } else {
+      alert('Invalid URL or Video ID');
     }
   }
 
